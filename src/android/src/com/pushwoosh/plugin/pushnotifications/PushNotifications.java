@@ -301,7 +301,12 @@ public class PushNotifications extends CordovaPlugin {
 				return false;
 			}
 
-			String userData = params.getString("userData");
+			String userData = null;
+			try {
+				userData = params.getString("userData");
+			} catch (JSONException e) {
+				PWLog.debug(TAG, "No userData string in payload");
+			}
 
 			Bundle extras = new Bundle();
 			if (userData != null) {
